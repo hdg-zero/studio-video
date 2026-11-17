@@ -1,0 +1,53 @@
+/* ---------- home ---------- */
+.home {
+  padding: 32px 36px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1100px;
+}
+.page-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.15s;
+}
+.card:hover {
+  border-color: var(--accent);
+}
+.checks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.checks li {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.checks li.ok .icon {
+  color: var(--ok);
+}
+.checks li.bad .icon {
+  color: var(--bad);
+}
+.checks li.warn .icon {
+  color: var(--warn);
+}

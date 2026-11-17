@@ -1,0 +1,797 @@
+/*
+ * Overlay styles. The layout is authored in CSS pixels at the size given by
+ * --w/--h (1280x720 for 16:9); the recorder renders it at a device pixel ratio
+ * (1.5 => 1920x1080), so text stays vector-crisp at any output resolution.
+ */
+@import '@fontsource/space-grotesk/300.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/600.css';
+
+:root {
+  --w: 1280px;
+  --h: 720px;
+  --accent: #ffb35c;
+  --muted: #c3c9d4;
+  --fg: #f2f0ea;
+  --font: 'Space Grotesk', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+html,
+body {
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+#stage {
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  overflow: hidden;
+  font-family: var(--font);
+  color: var(--fg);
+}
+
+canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.o {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  text-shadow:
+    0 2px 16px rgba(0, 0, 0, 0.95),
+    0 0 3px rgba(0, 0, 0, 0.9);
+}
+
+.label {
+  left: 56px;
+  top: 46px;
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.label::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  margin-right: 14px;
+  vertical-align: 1px;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.key {
+  left: 56px;
+  top: 84px;
+  max-width: 720px;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.key small {
+  display: block;
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--muted);
+  margin-top: 10px;
+  letter-spacing: 0;
+}
+
+.sub {
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  text-align: center;
+  font-size: 25px;
+  padding: 0 150px;
+  line-height: 1.3;
+}
+
+.sub span {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 3px 10px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border-radius: 3px;
+}
+
+.title {
+  left: 0;
+  right: 0;
+  top: calc(var(--h) * 0.372);
+  text-align: center;
+}
+
+.title .k {
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.5em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.title .t {
+  font-size: 76px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 14px;
+}
+
+.big {
+  left: 0;
+  right: 0;
+  top: calc(var(--h) * 0.347);
+  text-align: center;
+  font-size: 52px;
+  font-weight: 600;
+  padding: 0 140px;
+  line-height: 1.15;
+}
+
+.credits {
+  left: 0;
+  right: 0;
+  top: calc(var(--h) * 0.347);
+  text-align: center;
+  font-size: 22px;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 0 80px;
+}
+
+.credits b {
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 30px;
+  display: block;
+  margin-bottom: 18px;
+}
+
+#fade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+}
+
+#vig {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+/* ── Ready-made shots (visuals.ts): between the 3D canvas and the texts ── */
+
+#visual {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.v {
+  position: absolute;
+  inset: 0;
+}
+
+.v .w,
+.vl-item,
+.vs-num,
+.vs-label,
+.vt-sub,
+.vq-author,
+.vd-event,
+.vc-value,
+.vc-point,
+.v-caption {
+  opacity: 0;
+}
+
+.v .w {
+  display: inline-block;
+}
+
+/* image and video */
+.v-media {
+  overflow: hidden;
+  background: #000;
+}
+
+.v-img,
+.v-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.v-contain .v-img {
+  object-fit: contain;
+}
+
+.v-blur {
+  filter: blur(28px) brightness(0.5);
+  transform: scale(1.15);
+}
+
+.v-dim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.35) 40%, rgba(0, 0, 0, 0.8));
+}
+
+.v-caption {
+  position: absolute;
+  right: 56px;
+  bottom: 118px;
+  max-width: 420px;
+  text-align: right;
+  font-size: 17px;
+  color: var(--muted);
+  border-right: 2px solid var(--accent);
+  padding-right: 12px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+
+.v-credit {
+  position: absolute;
+  right: 14px;
+  bottom: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.55);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* title */
+.v-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 120px 40px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.9);
+}
+
+.vt-text {
+  font-size: 72px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.vt-rule {
+  width: 120px;
+  height: 3px;
+  margin: 26px auto 0;
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent);
+  transform: scaleX(0);
+}
+
+.vt-sub {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* quote */
+.v-quote {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 170px 60px;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
+}
+
+.vq-mark {
+  font-size: 110px;
+  line-height: 1;
+  height: 70px;
+  margin-left: -6px;
+  color: var(--accent);
+  font-weight: 300;
+}
+
+.vq-text {
+  font-size: 42px;
+  max-width: 940px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.vq-author {
+  margin-top: 26px;
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.vq-author::before {
+  content: '— ';
+}
+
+/* key figure */
+.v-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.9);
+}
+
+.vs-num {
+  font-size: 150px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+.vs-suffix {
+  color: var(--accent);
+  font-size: 0.55em;
+  margin-left: 0.1em;
+}
+
+.vs-label {
+  margin-top: 18px;
+  max-width: 760px;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+/* list */
+.v-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 120px 140px 110px 96px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95);
+}
+
+.vl-item {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.25;
+  max-width: 900px;
+}
+
+.vl-mark {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  transform: translateY(-4px);
+}
+
+.numbered .vl-mark {
+  width: auto;
+  height: auto;
+  min-width: 34px;
+  background: none;
+  box-shadow: none;
+  transform: none;
+  font-family: var(--mono);
+  font-size: 22px;
+  color: var(--accent);
+}
+
+/* chart */
+.v-chart {
+  display: flex;
+  flex-direction: column;
+  padding: 150px 120px 120px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9);
+}
+
+.vc-title {
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.vc-plot {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.vc-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+
+.vc-bar {
+  width: 70%;
+  height: 0;
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 45%, transparent));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 50%, transparent);
+  border-radius: 3px 3px 0 0;
+}
+
+.vc-col .vc-value {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.vc-col .vc-label {
+  position: absolute;
+  top: calc(100% + 10px);
+  font-size: 16px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.vc-plot svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.vc-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 6px var(--accent));
+}
+
+.vc-point {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.vc-point i {
+  position: absolute;
+  left: -6px;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--fg);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.vc-point .vc-value {
+  position: absolute;
+  bottom: 14px;
+  transform: translateX(-50%);
+  font-size: 18px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.vc-point .vc-label {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.v-chart-line .vc-point .vc-label {
+  top: 14px;
+}
+
+/* dates */
+.vd-axis {
+  position: absolute;
+  left: 56px;
+  right: 56px;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent) 6%, var(--accent) 94%, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.vd-event {
+  position: absolute;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+
+.vd-event i {
+  position: absolute;
+  left: -7px;
+  top: -6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+.vd-date,
+.vd-text {
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 220px;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95);
+}
+
+.vd-date {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.vd-text {
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.vd-event.above .vd-date {
+  bottom: 70px;
+}
+
+.vd-event.above .vd-text {
+  bottom: 22px;
+}
+
+.vd-event.below .vd-date {
+  top: 22px;
+}
+
+.vd-event.below .vd-text {
+  top: 62px;
+}
+
+/* ── Word-by-word subtitles (`subtitles.style: "words"`, the default of vertical videos) ── */
+
+.sub.words {
+  bottom: 64px;
+  padding: 0 120px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  /* room for the highlighted word, which grows a little */
+  word-spacing: 0.12em;
+  text-shadow:
+    0 2px 18px rgba(0, 0, 0, 0.95),
+    0 0 4px rgba(0, 0, 0, 0.95);
+}
+
+.sub.words span {
+  display: inline-block;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.sub.words span.on {
+  color: var(--accent);
+  transform: scale(1.05);
+}
+
+/*
+ * ── Vertical videos (9:16): the engine puts .portrait on #stage when the frame is taller than wide ──
+ * Layout for 720x1280 CSS px (1080x1920 at pixel ratio 1.5). The texts stay out of the zones the
+ * short-video apps cover: about 100 px at the top, 280 px at the bottom, the buttons on the right.
+ */
+
+.portrait .label {
+  left: 48px;
+  top: 116px;
+  font-size: 14px;
+}
+
+.portrait .key {
+  left: 48px;
+  right: 104px;
+  top: 148px;
+  max-width: none;
+  font-size: 36px;
+}
+
+.portrait .key small {
+  font-size: 19px;
+}
+
+.portrait .sub {
+  bottom: 300px;
+  padding: 0 96px 0 48px;
+  font-size: 25px;
+}
+
+.portrait .sub.words {
+  bottom: auto;
+  top: calc(var(--h) * 0.6);
+  padding: 0 88px 0 56px;
+  font-size: 46px;
+}
+
+.portrait .title {
+  top: calc(var(--h) * 0.25);
+  padding: 0 48px;
+}
+
+.portrait .title .t {
+  font-size: 58px;
+  line-height: 1.05;
+}
+
+.portrait .big {
+  top: calc(var(--h) * 0.33);
+  padding: 0 56px;
+  font-size: 42px;
+}
+
+.portrait .credits {
+  top: calc(var(--h) * 0.3);
+  padding: 0 56px;
+  font-size: 19px;
+}
+
+.portrait .credits b {
+  font-size: 28px;
+}
+
+.portrait .v-caption {
+  right: 96px;
+  bottom: 300px;
+  max-width: 440px;
+}
+
+.portrait .v-credit {
+  top: 100px;
+  bottom: auto;
+}
+
+.portrait .v-title {
+  padding: 0 52px 120px;
+}
+
+.portrait .vt-text {
+  font-size: 56px;
+}
+
+.portrait .v-quote {
+  padding: 0 64px 160px 52px;
+}
+
+.portrait .vq-text {
+  font-size: 36px;
+  max-width: none;
+}
+
+.portrait .v-stat {
+  padding: 0 52px 140px;
+}
+
+.portrait .vs-num {
+  font-size: 118px;
+}
+
+.portrait .vs-label {
+  max-width: 560px;
+  font-size: 25px;
+}
+
+.portrait .v-list {
+  padding: 260px 96px 330px 52px;
+}
+
+.portrait .vl-item {
+  font-size: 29px;
+  max-width: none;
+}
+
+.portrait .v-chart {
+  padding: 270px 72px 360px 52px;
+}
+
+.portrait .vc-plot {
+  gap: 10px;
+}
+
+.portrait .vc-col .vc-value {
+  font-size: 16px;
+}
+
+.portrait .vc-col .vc-label {
+  left: 0;
+  right: 0;
+  white-space: normal;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.15;
+}
+
+.portrait .vc-point .vc-value {
+  font-size: 15px;
+}
+
+.portrait .vc-point .vc-label {
+  font-size: 12px;
+}
+
+/* the dates run down the frame: axis on the left, each date and its text to its right */
+.portrait .vd-axis {
+  left: 92px;
+  right: auto;
+  top: 210px;
+  bottom: 330px;
+  width: 2px;
+  height: auto;
+  background: linear-gradient(180deg, transparent, var(--accent) 6%, var(--accent) 94%, transparent);
+  transform-origin: top;
+}
+
+.portrait .vd-event {
+  left: 93px;
+}
+
+.portrait .vd-date,
+.portrait .vd-text {
+  left: 30px;
+  right: auto;
+  transform: none;
+  text-align: left;
+  width: 480px;
+}
+
+.portrait .vd-event.above .vd-date,
+.portrait .vd-event.below .vd-date {
+  top: auto;
+  bottom: 2px;
+}
+
+.portrait .vd-event.above .vd-text,
+.portrait .vd-event.below .vd-text {
+  bottom: auto;
+  top: 6px;
+}

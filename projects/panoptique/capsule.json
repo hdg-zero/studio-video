@@ -1,0 +1,127 @@
+{
+  "$schema": "../../schemas/capsule.schema.json",
+  "title": "Le panoptique",
+  "kicker": "Capsule · Philosophie",
+  "closingLine": "Et si la tour était vide ?",
+  "credits": "<b>Le panoptique</b>Jeremy Bentham, <i>Panopticon; or, The Inspection-House</i> (1791) · Michel Foucault, <i>Surveiller et punir</i> (1975)<br>Voix : « Le narrateur », Fish Audio S2.1 Pro Free (via OpenRouter) · Images : Three.js · Musique générée par programme",
+  "language": "fr",
+  "format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "pixelRatio": 1.5
+  },
+  "look": {
+    "background": "#01030a",
+    "accent": "#ffb35c",
+    "fogDensity": 0.015,
+    "bloom": 0.9,
+    "exposure": 1.1
+  },
+  "voice": {
+    "model": "fish-audio/s2.1-pro-free:free",
+    "voice": "4f2a0684dd0247dda68f339738c780e6",
+    "concurrency": 3,
+    "credit": "« Le narrateur », Fish Audio S2.1 Pro Free"
+  },
+  "timing": {
+    "introLead": 3.2,
+    "lead": 0.9,
+    "tail": 1.1,
+    "outroTail": 1.8,
+    "credits": 6
+  },
+  "music": {
+    "root": 50,
+    "major": false,
+    "gain": 0.55,
+    "duck": 0.55,
+    "seed": 7
+  },
+  "segments": [
+    {
+      "id": "intro",
+      "mood": "intro",
+      "label": "",
+      "key": "",
+      "text": "Imaginez une prison où vous ne savez jamais si l'on vous regarde. Et où, pour cette raison, vous vous comportez comme si on vous regardait toujours."
+    },
+    {
+      "id": "bentham",
+      "mood": "calm",
+      "label": "1786 · Russie",
+      "key": "Jeremy Bentham<small>philosophe anglais, père de l'utilitarisme</small>",
+      "text": "Mille sept cent quatre-vingt-six. Le philosophe anglais Jeremy Bentham rend visite à son frère Samuel, en Russie. Samuel imagine un atelier où un seul contremaître surveille tous les ouvriers. Jeremy en tire un plan."
+    },
+    {
+      "id": "plan",
+      "mood": "build",
+      "label": "Le plan",
+      "key": "Un anneau, une tour<small>des cellules ouvertes vers le centre</small>",
+      "text": "Le principe est simple. Un bâtiment en anneau, découpé en cellules ouvertes vers l'intérieur. Au centre, une tour. La lumière traverse chaque cellule : le détenu s'y découpe comme une ombre."
+    },
+    {
+      "id": "regard",
+      "mood": "suspense",
+      "label": "Le dispositif",
+      "key": "Voir sans être vu",
+      "text": "Dans la tour, des persiennes et des cloisons. Le gardien voit tout. Mais lui, on ne le voit jamais. Le détenu ne sait pas s'il est observé, à cet instant précis."
+    },
+    {
+      "id": "interieur",
+      "mood": "dark",
+      "label": "L'effet",
+      "key": "La surveillance intériorisée",
+      "text": "Alors il suppose qu'il l'est. Toujours. Le gardien peut s'absenter, la tour peut même être vide : la machine fonctionne quand même. Le prisonnier devient son propre surveillant."
+    },
+    {
+      "id": "projet",
+      "mood": "bright",
+      "label": "1791",
+      "key": "Panopticon<small>ou la maison d'inspection</small>",
+      "text": "Bentham publie son projet en mille sept cent quatre-vingt-onze. Pour lui, c'est un progrès : moins de chaînes, moins de violence, moins de gardiens. Et le modèle vaudrait aussi pour les usines, les hôpitaux, les écoles."
+    },
+    {
+      "id": "echec",
+      "mood": "minimal",
+      "label": "Londres",
+      "key": "Un rêve jamais construit",
+      "text": "Il y consacre des années et une partie de sa fortune. Mais le gouvernement britannique finit par renoncer. Le panoptique de Bentham ne sera jamais bâti tel qu'il l'avait dessiné."
+    },
+    {
+      "id": "heritiers",
+      "mood": "pulse",
+      "label": "XIXe – XXe siècle",
+      "key": "Les héritiers<small>Pays-Bas · États-Unis · Cuba</small>",
+      "text": "Son idée, elle, fait du chemin. Des prisons circulaires s'en inspirent : aux Pays-Bas, aux États-Unis, ou à Cuba, au Presidio Modelo, sur l'île des Pins."
+    },
+    {
+      "id": "foucault",
+      "mood": "build",
+      "label": "1975",
+      "key": "Michel Foucault<small>Surveiller et punir</small>",
+      "text": "En mille neuf cent soixante-quinze, le philosophe Michel Foucault redonne vie au panoptique. Pour lui, ce n'est pas seulement un bâtiment : c'est le schéma de toute une société. Une société disciplinaire."
+    },
+    {
+      "id": "discipline",
+      "mood": "pulse",
+      "label": "Le panoptisme",
+      "key": "Rendre visible<small>classer · mesurer · noter · observer</small>",
+      "text": "Classer, mesurer, noter, observer. À l'école, à l'usine, à la caserne, à l'hôpital, le pouvoir n'a plus besoin de frapper. Il lui suffit de rendre chacun visible."
+    },
+    {
+      "id": "numerique",
+      "mood": "suspense",
+      "label": "Aujourd'hui",
+      "key": "La tour sans murs<small>caméras · téléphones · données</small>",
+      "text": "Aujourd'hui, la tour n'a plus de murs. Caméras, téléphones, réseaux sociaux, données personnelles : nous sommes observés sans voir qui observe. Et bien souvent, c'est nous qui nous montrons."
+    },
+    {
+      "id": "outro",
+      "mood": "finale",
+      "label": "",
+      "key": "",
+      "text": "Le gardien n'a peut-être jamais été dans la tour. La vraie question est ailleurs : savons-nous encore vivre comme si personne ne nous regardait ?"
+    }
+  ]
+}

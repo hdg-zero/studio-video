@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": [],
+    // same leniency as the assistant's own check (ai/compile.ts): an unused name is not an error
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["*/scenes/**/*.ts"]
+}

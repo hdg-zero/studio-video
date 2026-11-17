@@ -1,0 +1,84 @@
+/* ---------- toasts ---------- */
+.toasts {
+  position: fixed;
+  left: 50%;
+  bottom: 64px;
+  transform: translateX(-50%);
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 50;
+  max-width: 420px;
+}
+.toast {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--panel-3);
+  border: 1px solid var(--line-2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  white-space: pre-wrap;
+  animation: rise 0.18s ease-out;
+}
+.toast-ok .icon {
+  color: var(--ok);
+}
+.toast-error {
+  border-color: color-mix(in srgb, var(--bad) 50%, transparent);
+}
+.toast-error .icon {
+  color: var(--bad);
+}
+@keyframes rise {
+  from {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1250px) {
+  .stepper-text small {
+    display: none;
+  }
+}
+@media (max-width: 1100px) {
+  .project.with-assistant {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .project.with-assistant .assistant {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: min(420px, 100vw);
+    z-index: 30;
+    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.5);
+  }
+  .segment-meta {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+  .dock {
+    grid-column: 1;
+  }
+  .stepper {
+    grid-template-columns: repeat(5, auto);
+  }
+  .stepper-text {
+    display: none;
+  }
+  .project-head,
+  .step-body {
+    padding-inline: 16px;
+  }
+}

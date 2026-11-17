@@ -1,0 +1,20 @@
+{
+  "name": "@studio/runtime",
+  "version": "1.8.0",
+  "private": true,
+  "description": "Moteur navigateur du studio : scènes Three.js déterministes, post-traitement, incrustations et sous-titres.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/space-grotesk": "^5.3.0",
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.160.0"
+  }
+}

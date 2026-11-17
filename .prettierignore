@@ -1,0 +1,14 @@
+node_modules
+dist
+.studio
+out
+.venv
+packages/audio
+package-lock.json
+**/voice/manifest.json
+# user projects: written by the studio and its assistant, not formatted (a reformatted scene
+# would also invalidate its cached render); the reference example stays checked
+projects/*
+!projects/panoptique
+!projects/tsconfig.json
+projects/panoptique/capsule.json

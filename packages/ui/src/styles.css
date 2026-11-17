@@ -1,0 +1,12 @@
+/* Studio UI stylesheet, one file per area (bundled into one by esbuild, in this order). */
+@import './styles/base.css'; /* tokens, reset, typography */
+@import './styles/shell.css'; /* app shell: header, sidebar, layout */
+@import './styles/controls.css'; /* buttons, fields, badges, progress */
+@import './styles/home.css'; /* home: project list */
+@import './styles/project.css'; /* project page: header, stepper, step screens, menus */
+@import './styles/steps.css'; /* step screens: write, voices, music */
+@import './styles/assistant.css'; /* assistant drawer */
+@import './styles/views.css'; /* preview, stills, renders, settings */
+@import './styles/jobs.css'; /* jobs dock */
+@import './styles/toasts.css'; /* toasts */
+@import './styles/shot-editor.css'; /* shot of a segment (VisualEditor) */

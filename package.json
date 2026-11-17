@@ -1,0 +1,41 @@
+{
+  "name": "studio-video",
+  "private": true,
+  "version": "1.8.1",
+  "description": "Studio de capsules vidéo : scènes Three.js rendues image par image, voix off, musique générée, sous-titres.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "workspaces": [
+    "packages/runtime",
+    "packages/cli",
+    "packages/ui"
+  ],
+  "bin": {
+    "studio": "bin/studio.mjs"
+  },
+  "scripts": {
+    "build": "node packages/cli/build.mjs && node packages/ui/build.mjs",
+    "studio": "node packages/cli/dist/studio.js",
+    "typecheck": "tsc -p packages/runtime && tsc -p packages/cli && tsc -p packages/ui && tsc -p projects && tsc -p templates",
+    "lint": "eslint . && prettier --check .",
+    "format": "prettier --write . && eslint . --fix",
+    "test": "vitest run",
+    "test:py": "cd packages/audio && ../../.venv/bin/python -m pytest -q",
+    "lint:py": "cd packages/audio && ../../.venv/bin/ruff check . && ../../.venv/bin/ruff format --check . && ../../.venv/bin/mypy src tests",
+    "check": "npm run typecheck && npm run lint && npm test && npm run lint:py && npm run test:py",
+    "setup": "bash scripts/setup.sh"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.19.0",
+    "eslint": "^10.13.0",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vitest": "^4.1.12"
+  }
+}

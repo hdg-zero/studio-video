@@ -1,0 +1,98 @@
+/* ── shot of a segment (VisualEditor) ── */
+.visual-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+}
+.visual-types {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.visual-caption {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.chip:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+.chip-on {
+  color: var(--text);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.visual-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  align-items: end;
+}
+.visual-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.visual-fields .wide {
+  grid-column: 1 / -1;
+}
+.visual-fields span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.visual-fields input,
+.visual-fields select,
+.visual-fields textarea {
+  min-height: 30px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+.visual-fields label.check {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  min-height: 30px;
+}
+.visual-fields label.check input {
+  min-height: 0;
+}
+.media-pick {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+.media-pick > label:first-of-type {
+  flex: 1;
+}
+.media-thumb {
+  width: 96px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+}
+.visual-fields label.upload {
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+}
+.upload input {
+  display: none;
+}

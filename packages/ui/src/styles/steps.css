@@ -1,0 +1,297 @@
+/* step 1: write */
+.ai-subject {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 6px 6px 6px 12px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--line-2));
+}
+.ai-subject > .icon {
+  color: var(--accent);
+}
+.ai-subject input {
+  border: 0;
+  background: none;
+  padding: 0 4px;
+  min-height: 32px;
+}
+.ai-subject input:focus {
+  box-shadow: none;
+}
+.ai-subject:focus-within {
+  border-color: var(--accent);
+}
+.timeline-bar {
+  display: flex;
+  gap: 3px;
+  height: 28px;
+}
+.timeline-bar button {
+  min-width: 0;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  background: color-mix(in srgb, var(--mood) 70%, var(--bg));
+  color: #0b0e14;
+  font: 600 11px var(--font);
+  padding: 0 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.timeline-bar button:hover {
+  background: var(--mood);
+}
+.timeline-bar + p {
+  margin-top: -10px;
+}
+.segments {
+  display: flex;
+  flex-direction: column;
+}
+.segment {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 18px 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: inset 3px 0 0 var(--mood);
+  scroll-margin: 220px;
+  transition: border-color 0.12s;
+}
+.segment:focus-within {
+  border-color: var(--line-2);
+}
+.segment-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.segment-num {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  flex: none;
+  font: 600 12px var(--mono);
+  color: #0b0e14;
+  background: var(--mood);
+}
+input.segment-id {
+  width: auto;
+  field-sizing: content;
+  min-width: 80px;
+  max-width: 240px;
+  min-height: 28px;
+  padding: 2px 8px;
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+input.segment-id:hover {
+  border-color: var(--line-2);
+}
+.mood-select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.mood-select i {
+  position: absolute;
+  left: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mood);
+  pointer-events: none;
+}
+.mood-select select {
+  width: auto;
+  min-height: 28px;
+  padding: 2px 10px 2px 24px;
+  font-size: 12.5px;
+  border-radius: 99px;
+  background: var(--panel-2);
+}
+textarea.segment-text {
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 10px 12px;
+  border-color: transparent;
+  background: var(--bg);
+  resize: none;
+  field-sizing: content;
+}
+textarea.segment-text:hover {
+  border-color: var(--line-2);
+}
+.invalid,
+textarea.segment-text.invalid,
+input.segment-id.invalid {
+  border-color: var(--bad);
+}
+.segment-meta {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+}
+.segment-meta label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.segment-meta span {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.segment-meta input {
+  min-height: 30px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+.segment-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  min-height: 26px;
+}
+.voice-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+}
+.voice-ok {
+  color: var(--ok);
+}
+.voice-stale {
+  color: var(--warn);
+}
+.insert-here {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 18px;
+  margin: 1px 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: transparent;
+  cursor: pointer;
+  transition:
+    color 0.12s,
+    background 0.12s;
+}
+.segments > div {
+  display: flex;
+  flex-direction: column;
+}
+.segments > div:hover .insert-here,
+.insert-here:focus-visible {
+  color: var(--muted);
+}
+.insert-here:hover {
+  color: var(--accent) !important;
+  background: var(--panel-2);
+}
+
+/* step 2: voices */
+.clip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.clip {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto 92px;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 14px;
+  background: var(--panel);
+}
+.clip + .clip {
+  border-top: 1px solid var(--line);
+}
+.clip-num {
+  font: 12px var(--mono);
+  color: var(--muted);
+}
+.clip-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.clip-text b {
+  font-weight: 500;
+  font-size: 13px;
+}
+.clip-text span {
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.clip-state {
+  font-size: 12px;
+  color: var(--muted);
+}
+.clip-fresh .clip-state {
+  color: var(--ok);
+}
+.clip-stale .clip-state {
+  color: var(--warn);
+}
+
+/* step 3: music */
+.mood-track {
+  display: flex;
+  gap: 3px;
+}
+.mood-track > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--mood) 16%, transparent);
+  border-top: 3px solid var(--mood);
+  overflow: hidden;
+}
+.mood-track b {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mood-track span {
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+audio.audio {
+  width: 100%;
+  min-height: 40px;
+}
+
+/* settings page */
+.settings-page {
+  max-width: 1300px !important;
+}

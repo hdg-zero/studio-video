@@ -1,0 +1,109 @@
+/* Studio UI: dark, dense but airy; one accent colour (the capsules' amber). */
+:root {
+  --bg: #0b0e14;
+  --panel: #121721;
+  --panel-2: #181e2a;
+  --panel-3: #1f2633;
+  --line: #252d3c;
+  --line-2: #323b4d;
+  --text: #ebe8e1;
+  --muted: #8d96a8;
+  --accent: #ffb35c;
+  --accent-ink: #1b1206;
+  --ok: #5fd3a0;
+  --warn: #f5c26b;
+  --bad: #ff6b6b;
+  --info: #8fb3ff;
+  --radius: 10px;
+  --font: 'Space Grotesk', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.45 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+h1 {
+  font-size: 22px;
+}
+h2 {
+  font-size: 15px;
+}
+h3 {
+  font-size: 15px;
+}
+p {
+  margin: 0;
+}
+code,
+.mono {
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+}
+.warn {
+  color: var(--warn);
+}
+.ok {
+  color: var(--ok);
+}
+.grow {
+  flex: 1;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+.icon {
+  flex: none;
+  display: block;
+}
+::selection {
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}

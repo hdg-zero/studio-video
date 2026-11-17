@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schemas/capsule.schema.json",
+  "title": "Nouvelle capsule",
+  "kicker": "Capsule",
+  "closingLine": "",
+  "credits": "<b>Nouvelle capsule</b>Sources : … · Voix : … · Images : Three.js · Musique générée par programme",
+  "voice": {
+    "model": "fish-audio/s2.1-pro-free:free",
+    "voice": "4f2a0684dd0247dda68f339738c780e6",
+    "credit": "« Le narrateur », Fish Audio S2.1 Pro Free"
+  },
+  "segments": [
+    {
+      "id": "intro",
+      "mood": "intro",
+      "text": "Une question d'accroche, posée en une phrase."
+    },
+    {
+      "id": "idee",
+      "mood": "pulse",
+      "label": "Chapitre",
+      "key": "Titre à l'écran<small>sous-titre</small>",
+      "text": "Une ou deux phrases courtes. Les nombres s'écrivent en toutes lettres pour la voix."
+    },
+    {
+      "id": "outro",
+      "mood": "finale",
+      "text": "Une phrase de conclusion qui répond à l'accroche."
+    }
+  ]
+}

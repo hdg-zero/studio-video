@@ -1,0 +1,12 @@
+# Fins de ligne LF partout (voir .editorconfig), binaires jamais convertis.
+* text=auto eol=lf
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary
+
+# Fichiers générés : repliés dans les diffs de GitHub.
+package-lock.json linguist-generated=true
+schemas/capsule.schema.json linguist-generated=true
